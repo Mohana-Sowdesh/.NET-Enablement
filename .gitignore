@@ -1,0 +1,16 @@
+
+bin/Debug/net7.0/.NET-Enablement
+*.json
+*.dll
+*.pdb
+*.props
+*.targets
+obj/Debug/net7.0/.NET-Enablement.AssemblyInfo.cs
+obj/Debug/net7.0/.NET-Enablement.AssemblyInfoInputs.cache
+*.cache
+obj/Debug/net7.0/.NET-Enablement.csproj.FileListAbsolute.txt
+*.editorconfig
+obj/Debug/net7.0/.NET-Enablement.GlobalUsings.g.cs
+obj/Debug/net7.0/.NETCoreApp,Version=v7.0.AssemblyAttributes.cs
+obj/Debug/net7.0/apphost
+Week 1/.DS_Store
