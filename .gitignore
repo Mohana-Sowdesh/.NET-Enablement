@@ -13,5 +13,9 @@ obj/Debug/net7.0/.NET-Enablement.GlobalUsings.g.cs
 *.editorconfig
 obj/Debug/net7.0/.NET-Enablement.csproj.FileListAbsolute.txt
 obj/Debug/net7.0/.NET-Enablement.AssemblyInfo.cs
+<<<<<<< Updated upstream
 Level 2/.DS_Store
+=======
+>>>>>>> Stashed changes
 .DS_Store
+L2/bin/Debug/net7.0/L2
