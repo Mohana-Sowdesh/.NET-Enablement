@@ -48,7 +48,7 @@ namespace CreditCardManagementSystemLevel2
                         break;
                     }
                 }
-                Console.WriteLine("Press 4 to stop purchasing");
+                Console.WriteLine("Item added to cart. Press 4 to stop purchasing");
             }
         }
     }
