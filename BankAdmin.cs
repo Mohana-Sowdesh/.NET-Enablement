@@ -114,9 +114,20 @@ namespace CreditCardManagementSystem
                 Console.WriteLine("Credit card not found");
                 return;
             }
-            //Changing the status of credit card as 'blocked'
-            customers_al[cardFinderResult].Cards[cardFinderResult].Status = "Blocked";
-            Console.WriteLine(inputCardNum + "card blocked successfully");
+            Console.WriteLine("Do you want to close or block the card?");
+            string usr_choice = Console.ReadLine();
+            if(usr_choice == "block")
+            {
+                //Changing the status of credit card as 'blocked'
+                customers_al[cardFinderResult].Cards[cardFinderResult].Status = "Blocked";
+                Console.WriteLine(inputCardNum + " card blocked successfully");
+            }
+            else if(usr_choice == "close")
+            {
+                //Changing the status of credit card as 'closed'
+                customers_al[cardFinderResult].Cards[cardFinderResult].Status = "Closed";
+                Console.WriteLine(inputCardNum + " card closed successfully");
+            }
         }
 
         public void deposit()
