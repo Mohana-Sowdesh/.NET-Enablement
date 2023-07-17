@@ -7,7 +7,7 @@ namespace CreditCardManagementSystemLevel2
         {
             Console.WriteLine("Select the operation to perform - \n1. View all customer data" + 
                         "\n2. View all issued cards \n3. Add new customer \n4. Issue new credit card" +
-                        "\n5. View blocked cards \n6. Close/block credit card \n7. Deposit cash \n8. Logout");
+                        "\n5. View blocked cards \n6. Close/block credit card \n7. Deposit cash \n8. Print blocked & closed card details \n9. Logout");
             string bank_admin_choice = Console.ReadLine();
 
             switch(bank_admin_choice)
@@ -49,6 +49,11 @@ namespace CreditCardManagementSystemLevel2
                 }
                 case "8":
                 {
+                    printBlockedAndClosedCards();
+                    break;
+                }
+                case "9":
+                {
                     Console.WriteLine("Thank you!! You are logged out from the session.");
                     break; 
                 }
@@ -68,5 +73,6 @@ namespace CreditCardManagementSystemLevel2
         void blockCreditCard();
         void deposit();
         void spend(int purchasedAmt);
+        void printBlockedAndClosedCards();
     }
 }

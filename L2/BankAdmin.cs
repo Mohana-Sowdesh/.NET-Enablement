@@ -1,5 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.IO;
 
 namespace CreditCardManagementSystemLevel2 
 {
@@ -20,6 +23,12 @@ namespace CreditCardManagementSystemLevel2
 
         public void viewAllIssuedCards()
         {
+            if(customers_al.Count == 0)
+            {
+                Console.WriteLine("No cards issued");
+                return;
+            }
+
             Console.WriteLine("Printing all issued cards:");
             //Iterating through the customers_al arraylist to find issued cards
             foreach(var customer in customers_al)
@@ -120,13 +129,13 @@ namespace CreditCardManagementSystemLevel2
             if(usr_choice == "block")
             {
                 //Changing the status of credit card as 'blocked'
-                customers_al[cardFinderResult].Cards[cardFinderResult].Status = "Blocked";
+                customers_al[customerFinderResult].Cards[cardFinderResult].Status = "Blocked";
                 Console.WriteLine(inputCardNum + " card blocked successfully");
             }
             else if(usr_choice == "close")
             {
                 //Changing the status of credit card as 'closed'
-                customers_al[cardFinderResult].Cards[cardFinderResult].Status = "Closed";
+                customers_al[customerFinderResult].Cards[cardFinderResult].Status = "Closed";
                 Console.WriteLine(inputCardNum + " card closed successfully");
             }
         }
@@ -189,6 +198,25 @@ namespace CreditCardManagementSystemLevel2
             {
                 customers_al[customerFinderResult].Cards[cardFinderResult].Balance = balance - purchasedAmt;
                 Console.WriteLine("Thankyou!! Payment Success!! Current balance = " + customers_al[customerFinderResult].Cards[cardFinderResult].Balance);
+            }
+        }
+
+        public void printBlockedAndClosedCards()
+        {
+            //Using stream writer to write blocked and closed cards in a file
+            using (StreamWriter sw = new StreamWriter("Closed & Blocked cards.txt"))
+            {
+                foreach(var customer in customers_al)
+                {
+                    if(customer.Cards.Count>0)
+                    {
+                        foreach(var card in customer.Cards)
+                        {
+                            if(card.Status == "Blocked" || card.Status == "Closed")
+                                sw.WriteLine("Customer ID: " + customer.CustomerId + ", Customer Name: " + customer.CustomerName + ", Credit Card Number: " + card.CardNumber + ", Card Status: " + card.Status);
+                        }
+                    }
+                }
             }
         }
 

@@ -1,0 +1,1 @@
+Customer ID: 9462, Customer Name: Sathiya, Credit Card Number: 436231, Card Status: Blocked
