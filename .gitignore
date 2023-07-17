@@ -1,0 +1,34 @@
+
+bin/Debug/net7.0/.NET-Enablement
+*.json
+*.dll
+*.pdb
+*.props
+*.targets
+obj/Debug/net7.0/.NET-Enablement.AssemblyInfo.cs
+obj/Debug/net7.0/.NET-Enablement.AssemblyInfoInputs.cache
+*.cache
+obj/Debug/net7.0/.NET-Enablement.csproj.FileListAbsolute.txt
+*.editorconfig
+obj/Debug/net7.0/.NET-Enablement.GlobalUsings.g.cs
+obj/Debug/net7.0/.NETCoreApp,Version=v7.0.AssemblyAttributes.cs
+obj/Debug/net7.0/apphost
+Week 1/.DS_Store
+L2/bin/Debug/net7.0/L2
+*.csproj
+*.sln
+L2/obj/Debug/net7.0/.NETCoreApp,Version=v7.0.AssemblyAttributes.cs
+L2/obj/Debug/net7.0/apphost
+L2/obj/Debug/net7.0/L2.csproj.FileListAbsolute.txt
+L2/obj/Debug/net7.0/L2.GlobalUsings.g.cs
+L2/obj/Debug/net7.0/L2.AssemblyInfo.cs
+Level 2/.DS_Store
+Level 2/obj/Debug/net7.0/.NET-Enablement.AssemblyInfo.cs
+README.md
+Level 2/obj/Debug/net7.0/apphost
+Level 2/obj/Debug/net7.0/.NET-Enablement.GlobalUsings.g.cs
+Level 2/obj/Debug/net7.0/.NETCoreApp,Version=v7.0.AssemblyAttributes.cs
+Level 2/bin/Debug/net7.0/.NET-Enablement
+Level 2/obj/Debug/net7.0/.NET-Enablement.csproj.FileListAbsolute.txt
+
+.DS_Store
