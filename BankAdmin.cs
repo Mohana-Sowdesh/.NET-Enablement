@@ -159,7 +159,7 @@ namespace CreditCardManagementSystem
         public int customerFinder(int custId)
         {
             int flag = 0;
-            int index = 0, i = 0;
+            int i = 0;
 
             for(i=0; i<customers_al.Count; i++)
             {
@@ -179,7 +179,7 @@ namespace CreditCardManagementSystem
         public int creditCardFinder(int customerIndex, int cardNumber)
         {
             int flag = 0;
-            int index = 0, i = 0;
+            int i = 0;
 
             for(i=0; i<customers_al[customerIndex].Cards.Count; i++)
             {

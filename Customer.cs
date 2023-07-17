@@ -71,6 +71,11 @@ namespace CreditCardManagementSystem
                 Console.WriteLine("Customer not found");
                 return;
             }
+            if(customers_al[customerFinderResult].Cards.Count == 0)
+            {
+                Console.WriteLine("No credit card is associated with this account");
+                return;
+            }
             Console.WriteLine("Enter the number of card : ");
             int inputCardNum = Convert.ToInt32(Console.ReadLine());
             //Checks if the credit card is present 
