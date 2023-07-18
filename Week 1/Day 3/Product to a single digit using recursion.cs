@@ -3,13 +3,13 @@ using System;
 class HelloWorld {
   static int CalcProduct(int number) {
     int product = 1;
-    while(number>0) {
-        int temp = number%10;
-        number /=10;
-        product = product*temp;
+    while(number > 0) {
+        int temp = number % 10;
+        number = number / 10;
+        product = product * temp;
     }
-    if(product>=10)
-        return CalcProduct(product);
+    if(product >= 10)
+        CalcProduct(product);
     return product;
   }
   
