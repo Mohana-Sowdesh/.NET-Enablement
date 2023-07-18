@@ -24,29 +24,37 @@ class HelloWorld {
     Console.WriteLine("Enter the second number: ");
     int b = Convert.ToInt32(Console.ReadLine());
     
-    int res =0;
-    
     switch(operation){
         case "add":
-            res = a+b;
+        {
+            Console.WriteLine("Addition result: " + (a+b));
             break;
+        }
         case "subtract":
-            res = a-b;
+        {
+            Console.WriteLine("Subtraction result: " + (a-b));
             break;
+        }
         case "multiply":
-            res = a*b;
+        {
+            Console.WriteLine("Multiplication result: " + (a*b));
             break;
+        }
         case "divide":
-            res = a/b;
+        {
+            Console.WriteLine("Division result: " + ((float)a/(float)b));
             break;
+        }
         case "modulus":
-            res = a%b;
-            break;   
-        default:
-            Console.WriteLine("Please enter a valid oper");
+        {
+            Console.WriteLine("Modulo result: " + (a%b));
             break;
+        }
+        default:
+        {
+            Console.WriteLine("Please enter a valid operation");
+            break;
+        }
     }
-    
-    Console.WriteLine("The result is " + res);
   }
 }
