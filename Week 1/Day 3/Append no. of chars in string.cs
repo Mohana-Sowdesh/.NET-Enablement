@@ -1,3 +1,11 @@
+/*
+
+Write a program to print the following String pattern 
+Input: a3b10c4
+Output: aaabbbbbbbbbbcccc
+
+*/
+
 using System;
 using System.Text;
 
@@ -10,14 +18,15 @@ class HelloWorld {
     StringBuilder sb = new StringBuilder();
     
     for(int i=0; i<str.Length; i++) {
-        if(Char.IsLetter(str[i])) {
+        if((Convert.ToInt32(str[i]) >= 97 && Convert.ToInt32(str[i]) <= 122) || (Convert.ToInt32(str[i]) >= 65 && Convert.ToInt32(str[i]) <= 90)) {
             characters.Append(str[i]);
         }
         else {
             number = number*10 + Convert.ToInt32(str[i].ToString());
-            if(i+1==str.Length || Char.IsLetter(str[i+1])) {
-                string str_temp = appendChars(number, characters.ToString());
-                sb.Append(str_temp); 
+            if(i+1==str.Length || (Convert.ToInt32(str[i+1]) < 48 || Convert.ToInt32(str[i+1]) > 57))
+            {
+                string strTemp = AppendChars(number, characters.ToString());
+                sb.Append(strTemp); 
                 number = 0;
                 characters.Clear();
             }
@@ -26,7 +35,7 @@ class HelloWorld {
     Console.WriteLine(sb.ToString());
   }
   
-  static string appendChars(int number, string character) {
+  static string AppendChars(int number, string character) {
     StringBuilder sb = new StringBuilder();
     for(int i=0; i<number; i++) {
         sb.Append(character);
