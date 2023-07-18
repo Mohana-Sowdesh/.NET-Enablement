@@ -8,7 +8,7 @@ Output: 2 3 5 7
 */
 
 using System;
-class HelloWorld {
+class PrimeNumber {
   static void Main() {
     Console.WriteLine("Enter the starting number to find the prime numbers lying in the range: ");
     int start = Convert.ToInt32(Console.ReadLine());
@@ -16,26 +16,26 @@ class HelloWorld {
     Console.WriteLine("Enter the ending number: ");
     int end = Convert.ToInt32(Console.ReadLine());
     
-    int i=0,j=0;
-    bool flag=true;
-    
-    for(i=start; i<end; i++)
+    for(int i=start; i<end; i++) 
     {
-        flag=true;
-        
-        if(i==0 || i==1)
-            continue;
-        
-        for(j=2; j<=i/2; j++)
-        {
-            if(i%j==0) {
-                flag = false;
-                break;
-            }
-        }
-        
-        if(flag==true)
-            Console.Write(i+" ");
+        if(isPrime(i))
+            Console.Write(i + " ");
     }
+  }
+
+  static bool isPrime(int n)
+  {
+    if (n <= 1)
+        return false;
+    else if (n == 2)
+        return true;
+    else if (n % 2 == 0)
+        return false;
+    for (int i = 3; i <= Math.Sqrt(n); i += 2) 
+    {
+        if (n % i == 0)
+            return false;
+    }
+    return true;
   }
 }
