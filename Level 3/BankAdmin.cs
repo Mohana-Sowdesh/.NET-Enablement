@@ -61,7 +61,7 @@ namespace CreditCardManagementSystemLevel2
             {
                 foreach(var card in customer.Cards)
                 {
-                    Console.WriteLine("Credit card number: " + card.CardNumber + ", Credit card holder name: " + customer.CustomerName + ", Credit card status: " + card.Status + ", Card Type: " + card.CardType);
+                    Console.WriteLine("Credit card number: " + card.CardNumber + ", Credit card holder name: " + customer.CustomerName + ", Credit card status: " + card.Status + ", Card Type: " + card.CardType + ", Pin: " + card.Pin);
                 }
             }
         }
@@ -250,6 +250,14 @@ namespace CreditCardManagementSystemLevel2
             }
             int balance = customerArrayList[customerFinderResult].Cards[cardFinderResult].Balance;
 
+            Console.WriteLine("Enter your card pin: ");
+            string userInputPin = Console.ReadLine();
+
+            if(!userInputPin.Equals(customerArrayList[customerFinderResult].Cards[cardFinderResult].Pin))
+            {
+                Console.WriteLine("Wrong pin entered!!");
+                return;
+            }
             //Checking if balance is greater than purchased amount
             if(balance < purchasedAmt)
             {
