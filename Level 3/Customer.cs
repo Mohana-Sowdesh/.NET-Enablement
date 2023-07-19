@@ -96,7 +96,7 @@ namespace CreditCardManagementSystemLevel2
 
         static void ViewBalance(BankAdmin bankObject, List<Customer> customersArrayList)
         {
-            Console.WriteLine("Enter Adhar ID: ");
+            Console.WriteLine("Enter Customer ID: ");
             int inputID = Convert.ToInt32(Console.ReadLine());
             //Checks if the customer ID given by the user is present 
             int customerFinderResult = bankObject.customerFinder(inputID, customersArrayList);
