@@ -134,7 +134,7 @@ namespace CreditCardManagementSystemLevel2
             int purchasedAmt = itemObject.chooseItems();
 
             Console.WriteLine("You have purchased for Rs. " + purchasedAmt);
-
+            
             //Calling spend method un bankAdmin class
             bankObject.Spend(purchasedAmt, customersArrayList);
         }

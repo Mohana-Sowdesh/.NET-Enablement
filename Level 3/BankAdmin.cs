@@ -258,6 +258,14 @@ namespace CreditCardManagementSystemLevel2
                 return;
             }
 
+            Console.WriteLine("Enter your card pin: ");
+            string userInputPin = Console.ReadLine();
+
+            if(!userInputPin.Equals(customerArrayList[customerFinderResult].Cards[cardFinderResult].Pin))
+            {
+                Console.WriteLine("Wrong pin entered!!");
+                return;
+            }
             //Checking if balance is greater than purchased amount
             if(balance < purchasedAmt)
             {
