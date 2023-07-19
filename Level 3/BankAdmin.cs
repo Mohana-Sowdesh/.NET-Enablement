@@ -6,7 +6,7 @@ using System.IO;
 
 namespace CreditCardManagementSystemLevel2 
 {
-    class BankAdmin : IBank
+    class BankAdmin
     {   
         public void InitializeOperation(SBIBankAdmin sbiBankAdmin, HDFCBankAdmin hdfcBankAdmin, KVBBankAdmin kvbBankAdmin)
         {

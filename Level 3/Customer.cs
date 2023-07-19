@@ -76,7 +76,7 @@ namespace CreditCardManagementSystemLevel2
         }
         static void ApplyNewCreditCard(BankAdmin bankObject, List<Customer> customersArrayList)
         {
-            Console.WriteLine("Enter Adhar ID: ");
+            Console.WriteLine("Enter Customer ID: ");
             int inputID = Convert.ToInt32(Console.ReadLine());
             //Checks if the customer ID given by the user is present 
             int index = bankObject.customerFinder(inputID, customersArrayList);
@@ -134,7 +134,6 @@ namespace CreditCardManagementSystemLevel2
             int purchasedAmt = itemObject.chooseItems();
 
             Console.WriteLine("You have purchased for Rs. " + purchasedAmt);
-            
             //Calling spend method un bankAdmin class
             bankObject.Spend(purchasedAmt, customersArrayList);
         }
