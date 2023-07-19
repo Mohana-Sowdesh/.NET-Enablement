@@ -14,3 +14,5 @@ Level 3/obj/Debug/net7.0/Level 3.GeneratedMSBuildEditorConfig.editorconfig
 Level 3/obj/Debug/net7.0/Level 3.GlobalUsings.g.cs
 Level 3/obj/Debug/net7.0/Level 3.csproj.FileListAbsolute.txt
 Level 3/obj/Debug/net7.0/apphost
+*.sln
+Level 3/Closed & Blocked cards.txt

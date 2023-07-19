@@ -4,9 +4,12 @@ namespace CreditCardManagementSystemLevel2
 {
     class Program 
     {
+        public static HDFCBankAdmin hdfcBankAdmin = new HDFCBankAdmin();
+        public static SBIBankAdmin sbiBankAdmin = new SBIBankAdmin();
+        public static KVBBankAdmin kvbBankAdmin = new KVBBankAdmin();
         static void Main(string[] args) 
         {   
-            IBank bankObject = new BankAdmin();
+            BankAdmin bankObject = new BankAdmin();
             Customer customerObject = new Customer();
 
             while(true) {
@@ -16,14 +19,13 @@ namespace CreditCardManagementSystemLevel2
                 switch(user_choice) {
                     case "1":
                     {
-                        Console.WriteLine("\nHello Bank Administrator!");
-                        bankObject.initializeOperation();
+                        bankObject.InitializeOperation(sbiBankAdmin, hdfcBankAdmin, kvbBankAdmin);
                         break;
                     }
                     case "2":
                     {
                         Console.WriteLine("\nHello Customer!");
-                        customerObject.initializeOperation((BankAdmin)bankObject);
+                        customerObject.InitializeOperation(bankObject, sbiBankAdmin, hdfcBankAdmin, kvbBankAdmin);
                         break;
                     }
                     default:
