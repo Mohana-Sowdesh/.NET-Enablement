@@ -14,7 +14,7 @@ public class MXThread {
 }
  
 // Driver Class
-public class GFG {
+public class Multithreading {
  
     // Main Method
     public static void Main()
