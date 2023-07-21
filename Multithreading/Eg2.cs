@@ -7,7 +7,8 @@ class Multithreading {
         Thread Th1 = new Thread(work);
         Thread Th2 = new Thread(work);
         Thread Th3 = new Thread(work);
- 
+
+        //Setting priority for thread
         Th2.Priority = ThreadPriority.Lowest;
         Th3.Priority = ThreadPriority.AboveNormal;
         Th1.Start();
