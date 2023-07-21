@@ -1,26 +1,20 @@
 using System;
 using System.Threading;
  
-public class MXThread {
- 
-    // Non-static method
+public class MThread {
     public void mythr()
     {
-        for (int j = 0; j < 2; j++) {
- 
+        for (int i = 0; i < 2; i++) 
+        {
             Console.WriteLine("My Thread is in progress...!!");
         }
     }
 }
  
-// Driver Class
 public class Multithreading {
- 
-    // Main Method
     public static void Main()
     {
-        // Creating object of ExThread class
-        MXThread obj = new MXThread();
+        MThread obj = new MThread();
  
         // Creating and initializing thread
         // Using thread class and
