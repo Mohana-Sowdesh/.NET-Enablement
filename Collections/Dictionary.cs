@@ -34,13 +34,13 @@ namespace Demo
             System.Console.WriteLine("\nPrinting dictionary contents after removing: ");
             printDictionary(dictionary);
 
-            //TryAdd(TKey, TValue)	
+            //TryAdd(TKey, TValue) - Unlike the Add method, this method doesn't throw an exception if the element with the given key exists in the dictionary. Unlike the Dictionary indexer, TryAdd doesn't override the element if the element with the given key exists in the dictionary. If the key already exists, TryAdd does nothing and returns false.
             dictionary.TryAdd(73, "Umesh");
 
             System.Console.WriteLine("\nPrinting dictionary contents after TryAdd(): ");
             printDictionary(dictionary);	
 
-            //TryGetValue(TKey, TValue)
+            //TryGetValue(TKey, TValue) - When this method returns, contains the value associated with the specified key, if the key is found; otherwise, the default value for the type of the value parameter. This parameter is passed uninitialized.
             string value = "";
             dictionary.TryGetValue(7, out value);
             System.Console.WriteLine("\ndictionary.TryGetValue(7, out value): {0}", value);
