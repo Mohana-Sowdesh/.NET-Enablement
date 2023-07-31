@@ -2,26 +2,85 @@ using System;
 
 namespace CreditCardManagementSystem
 {
-    class BankAdmin : IBank
-    { 
-        //Static arrayList containing all customers so that object reference need not passed everytime 
-        public static List<Customer> customers_al = new List<Customer>();  
-        public void viewAllCustomerData()
-        {
-            if(customers_al.Count == 0)
-                Console.WriteLine("No customers present");
+    class BankAdmin : Bank
+    {
+        BankHelper bankHelper = new BankHelper();
 
-            foreach(var customer in customers_al)
+        public void InitializeOperation(Bank bank)
+        {   
+            Console.WriteLine("Select the operation to perform - \n1. View all customer data" + 
+                    "\n2. View all issued cards \n3. Add new customer \n4. Issue new credit card" +
+                    "\n5. View blocked cards \n6. Close/block credit card \n7. Deposit cash \n8. Logout");
+            string bankAdminChoice = Console.ReadLine();
+
+            switch(bankAdminChoice)
+            {
+                case "1":
+                {
+                    ViewAllCustomerData();
+                    break;
+                }
+                case "2":
+                {
+                    ViewAllIssuedCards();
+                    break;
+                }
+                case "3":
+                {
+                    bankHelper.AddNewCustomerHelper(bank);
+                    break;
+                }
+                case "4":
+                {
+                    bankHelper.IssueNewCreditCardHelper(bank);
+                    break;
+                }
+                case "5":
+                {
+                    ViewBlockedCards();
+                    break;
+                }
+                case "6":
+                {
+                    BlockCreditCard();
+                    break;
+                }
+                case "7":
+                {
+                    Deposit();
+                    break;
+                }
+                case "8":
+                {
+                    Console.WriteLine("Thank you!! You are logged out from the session.");
+                    break; 
+                }
+                default:
+                {
+                    Console.WriteLine("Please enter a valid choice!!");
+                    break;
+                }
+            }
+        }
+
+        public void ViewAllCustomerData()
+        {
+            if(customersArrayList.Count == 0)
+            {
+                Console.WriteLine("No customers present");
+                return;
+            }
+
+            foreach(var customer in customersArrayList)
             {
                 Console.WriteLine("Name: " + customer.CustomerName + ", Customer ID: " + customer.CustomerId + ", No. of credit cards possessed: " + customer.Cards.Count);
             }
         }
-
-        public void viewAllIssuedCards()
+        public void ViewAllIssuedCards()
         {
             Console.WriteLine("Printing all issued cards:");
             //Iterating through the customers_al arraylist to find issued cards
-            foreach(var customer in customers_al)
+            foreach(var customer in customersArrayList)
             {
                 foreach(var card in customer.Cards)
                 {
@@ -29,170 +88,20 @@ namespace CreditCardManagementSystem
                 }
             }
         }
-
-        public void addNewCustomer()
-        {
-            Console.WriteLine("Enter customer name: ");
-            string customerName = Console.ReadLine();
-
-            Random random = new Random();
-            //Creating random number for customer ID
-            int customerId = random.Next(1, 10000);
-
-            //Creating a new Customer class object and adding it to customers_al arraylist
-            customers_al.Add(new Customer(){CustomerId = customerId, CustomerName = customerName, Cards = new List<CreditCard>(), CardRequests = 0});
-            Console.WriteLine("Customer added successfully!!");
-        }
-
-        public void issueNewCreditCard()
-        {
-            Console.WriteLine("Enter customer unique ID: ");
-            int inputId = Convert.ToInt32(Console.ReadLine());
-            //Checking if customer is present
-            int result = customerFinder(inputId);
-
-            if(result == -1)
-            {
-                Console.WriteLine("Customer not found");
-                return;
-            }
-            Customer customer = (Customer)customers_al[result];
-            while(customer.CardRequests > 0)
-            {
-                //Checks if the maximum card limit is not reached
-                if(customer.Cards.Count < 5)
-                {
-                    Random random = new Random();
-                    //Creating a random number for card number and CVV
-                    int cardNum = random.Next(1, 1000000);
-                    int cvv = random.Next(1, 1000);
-                    CreditCard newCard = new CreditCard(){CardNumber = cardNum, Balance = 0, Cvv = cvv, Pin = "6789", Status = "Active"};
-                    customers_al[result].Cards.Add(newCard);
-                    customer.CardRequests--;
-                    Console.WriteLine("Card count:"+customers_al[result].Cards.Count);
-                    Console.WriteLine("Credit card issued successfully!!");
-                }
-                else {
-                    Console.WriteLine("Maximum no. of cards limits reached!!");
-                }
-            }
-        }
-
-        public void viewBlockedCards()
+        public void ViewBlockedCards()
         {
             //Iterating through the customers_al list to find the blocked cards
-            foreach(var customer in customers_al)
+            foreach(var customer in customersArrayList)
             {
-                if(customer.Cards.Count>0)
+                if(customer.Cards.Count > 0)
                 {
                     foreach(var card in customer.Cards)
                     {
-                        if(card.Status == "Blocked")
+                        if(card.Status == "Blocked" || card.Status == "Closed")
                             Console.WriteLine("Customer ID: " + customer.CustomerId + ", Customer Name: " + customer.CustomerName + ", Credit Card Number: " + card.CardNumber + ", Card Status: " + card.Status);
                     }
                 }
             }
-        }
-
-        public void blockCreditCard()
-        {
-            Console.WriteLine("Enter customer unique ID: ");
-            int inputId = Convert.ToInt32(Console.ReadLine());
-            //Checking if customer is present
-            int customerFinderResult = customerFinder(inputId);
-            if(customerFinderResult == -1)
-            {
-                Console.WriteLine("Customer not found");
-                return;
-            }
-            Console.WriteLine("Enter the card number that needs to be blocked: ");
-            int inputCardNum = Convert.ToInt32(Console.ReadLine());
-            //Checking if the credit card is present
-            int cardFinderResult = creditCardFinder(customerFinderResult, inputCardNum);
-            if(cardFinderResult == -1)
-            {
-                Console.WriteLine("Credit card not found");
-                return;
-            }
-            Console.WriteLine("Do you want to close or block the card?");
-            string usr_choice = Console.ReadLine();
-            if(usr_choice == "block")
-            {
-                //Changing the status of credit card as 'blocked'
-                customers_al[cardFinderResult].Cards[cardFinderResult].Status = "Blocked";
-                Console.WriteLine(inputCardNum + " card blocked successfully");
-            }
-            else if(usr_choice == "close")
-            {
-                //Changing the status of credit card as 'closed'
-                customers_al[cardFinderResult].Cards[cardFinderResult].Status = "Closed";
-                Console.WriteLine(inputCardNum + " card closed successfully");
-            }
-        }
-
-        public void deposit()
-        {
-            Console.WriteLine("Enter customer unique ID: ");
-            int inputId = Convert.ToInt32(Console.ReadLine());
-            //Checking if customer is present
-            int customerFinderResult = customerFinder(inputId);
-            if(customerFinderResult == -1)
-            {
-                Console.WriteLine("Customer not found");
-                return;
-            }
-            Console.WriteLine("Enter the card number: ");
-            int inputCardNum = Convert.ToInt32(Console.ReadLine());
-            //Checking if the credit card is present
-            int cardFinderResult = creditCardFinder(customerFinderResult, inputCardNum);
-            if(cardFinderResult == -1)
-            {
-                Console.WriteLine("Credit card not found");
-                return;
-            }
-            Console.WriteLine("Enter the amount to be deposited: ");
-            int amtToDeposit = Convert.ToInt32(Console.ReadLine());
-            customers_al[customerFinderResult].Cards[cardFinderResult].Balance += amtToDeposit;
-            Console.WriteLine("Amount deposited!!"); 
-        }
-
-        public int customerFinder(int custId)
-        {
-            int flag = 0;
-            int i = 0;
-
-            for(i=0; i<customers_al.Count; i++)
-            {
-                Customer customer = (Customer)customers_al[i];
-                //Checks if the customer ID given by the user is present 
-                if(customer.CustomerId == custId)
-                {
-                    flag = 1;
-                    break;
-                }
-            }
-            if(flag == 0)
-                return -1;
-            return i;
-        }
-
-        public int creditCardFinder(int customerIndex, int cardNumber)
-        {
-            int flag = 0;
-            int i = 0;
-
-            for(i=0; i<customers_al[customerIndex].Cards.Count; i++)
-            {
-                //Checks if the credit card number given by the user is present 
-                if(customers_al[customerIndex].Cards[i].CardNumber == cardNumber)
-                {
-                    flag = 1;
-                    break;
-                }
-            }
-            if(flag == 0)
-                return -1;
-            return i;
         }
     }
 }

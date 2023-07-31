@@ -1,36 +1,35 @@
 using System;
+using System.Collections.Generic;
 
-namespace CreditCardManagementSystem 
+namespace CreditCardManagementSystem
 {
-    class Customer 
+    class Customer
     {
-        //Properties of Customer class
         public int CustomerId { get; set;}
         public string CustomerName { get; set;}
         public List<CreditCard> Cards { get; set;}
         public int CardRequests { get; set;}
-        
-        public void initializeOperation(BankAdmin bankObject)
+        public void InitializeOperation()
         {
             Console.WriteLine("Select the operation to perform - \n1. Apply for new credit card" + 
                         "\n2. View balance \n3. Close/block credit card \n4. Logout");
-            string customer_choice = Console.ReadLine();
+            string customerChoice = Console.ReadLine();
 
-            switch(customer_choice)
+            switch(customerChoice)
             {
                 case "1":
                 {
-                    applyNewCreditCard(bankObject);
+                    ApplyNewCreditCard();
                     break;
                 }
                 case "2":
                 {
-                    viewBalance(bankObject);
+                    ViewBalance();
                     break;
                 }
                 case "3":
                 {
-                    blockCreditCard(bankObject);
+                    BlockCreditCard();
                     break;
                 }
                 case "4":
@@ -40,58 +39,52 @@ namespace CreditCardManagementSystem
                 }
             }
         }
-        static void applyNewCreditCard(BankAdmin bankObject)
+
+        public void ApplyNewCreditCard()
         {
-            Console.WriteLine("Enter Adhar ID: ");
+            Console.WriteLine("Enter customer unique ID: ");
             int inputID = Convert.ToInt32(Console.ReadLine());
-            //Checks if the customer ID given by the user is present 
-            int index = bankObject.customerFinder(inputID);
-            if(index == -1)
-            {
-                Console.WriteLine("Customer not found");
-                return;
-            }
-            Customer customer = BankAdmin.customers_al[index];
-            if(customer.Cards.Count == 5)
-            {
-                Console.WriteLine("Maximum no. of cards limits reached!!");
-            }
-            BankAdmin.customers_al[index].CardRequests = customer.CardRequests + 1;
-            Console.WriteLine("Thankyou!! Your request is being processed");
+
+            BankHelper bankHelper = new BankHelper();
+            bankHelper.NewCreditCardHelper(inputID);
         }
 
-        static void viewBalance(BankAdmin bankObject)
+        public void ViewBalance()
         {
-            Console.WriteLine("Enter Adhar ID: ");
-            int inputID = Convert.ToInt32(Console.ReadLine());
-            //Checks if the customer ID given by the user is present 
-            int customerFinderResult = bankObject.customerFinder(inputID);
-            if(customerFinderResult == -1)
-            {
-                Console.WriteLine("Customer not found");
+            BankHelper bankHelper = new BankHelper();
+            int[] resultArray = bankHelper.BlockCreditCardHelper();
+            int customerFinderResult = resultArray[0];
+            int cardFinderResult = resultArray[1];
+            if(customerFinderResult == -1 || cardFinderResult == -1)
                 return;
-            }
-            if(BankAdmin.customers_al[customerFinderResult].Cards.Count == 0)
-            {
-                Console.WriteLine("No credit card is associated with this account");
-                return;
-            }
-            Console.WriteLine("Enter the number of card : ");
-            int inputCardNum = Convert.ToInt32(Console.ReadLine());
-            //Checks if the credit card is present 
-            int cardFinderResult = bankObject.creditCardFinder(customerFinderResult, inputCardNum);
-            if(cardFinderResult == -1)
-            {
-                Console.WriteLine("Credit card not found");
-                return;
-            }
-            Console.WriteLine("Balance in card: " + BankAdmin.customers_al[cardFinderResult].Cards[cardFinderResult].Balance);
+
+            Console.WriteLine("Balance in card: " + Bank.customersArrayList[customerFinderResult].Cards[cardFinderResult].Balance);
         }
 
-        static void blockCreditCard(BankAdmin bankObject)
+        public void BlockCreditCard()
         {
-            //Reusing the blockCreditCard method present in BankAdmin class
-            bankObject.blockCreditCard();
+            BankHelper bankHelper = new BankHelper();
+            int[] resultArray = bankHelper.BlockCreditCardHelper();
+            int customerFinderResult = resultArray[0];
+            int cardFinderResult = resultArray[1];
+            if(customerFinderResult == -1 || cardFinderResult == -1)
+                return;
+            
+            //Getting user's choice 
+            Console.WriteLine("Do you want to close or block the card?");
+            string userChoice = Console.ReadLine();
+            if(userChoice == "block")
+            {
+                //Changing the status of credit card as 'blocked'
+                Bank.customersArrayList[customerFinderResult].Cards[cardFinderResult].Status = "Blocked";
+                Console.WriteLine("Card blocked successfully!!");
+            }
+            else if(userChoice == "close")
+            {
+                //Changing the status of credit card as 'closed'
+                Bank.customersArrayList[customerFinderResult].Cards[cardFinderResult].Status = "Closed";
+                Console.WriteLine("Card closed successfully!!");
+            }
         }
     }
 }

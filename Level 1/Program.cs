@@ -4,26 +4,27 @@ namespace CreditCardManagementSystem
 {
     class Program 
     {
-        static void Main(string[] args) 
+        static void Main() 
         {   
-            IBank bankObject = new BankAdmin();
+            Bank bankObject = new Bank();
+            BankAdmin bankAdminObject = new BankAdmin();
             Customer customerObject = new Customer();
 
             while(true) {
                 Console.WriteLine("\n\nSelect the user type - \n1. Bank Administrator \n2. Customer");
-                string user_choice = Console.ReadLine();
+                string userChoice = Console.ReadLine();
 
-                switch(user_choice) {
+                switch(userChoice) {
                     case "1":
                     {
                         Console.WriteLine("\nHello Bank Administrator!");
-                        bankObject.initializeOperation();
+                        bankAdminObject.InitializeOperation(bankObject);
                         break;
                     }
                     case "2":
                     {
                         Console.WriteLine("\nHello Customer!");
-                        customerObject.initializeOperation((BankAdmin)bankObject);
+                        customerObject.InitializeOperation();
                         break;
                     }
                     default:
