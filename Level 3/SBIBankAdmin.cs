@@ -1,60 +1,59 @@
 using System.Text;
 using System.IO;
 
-namespace CreditCardManagementSystemLevel2 
+namespace CreditCardManagementSystem3 
 {
     class SBIBankAdmin : BankAdmin
     {
-        //Static arrayList containing all customers so that object reference need not passed everytime 
-        public static List<Customer> sbiCustomersArrayList = new List<Customer>();
-        public void SelectOperation()
-        {
+        public void SelectOperation(SBIBankAdmin bank)
+        {   
+            BankHelper bankHelper = new BankHelper(bank);
             Console.WriteLine("Select the operation to perform - \n1. View all customer data" + 
-                        "\n2. View all issued cards \n3. Add new customer \n4. Issue new credit card" +
-                        "\n5. View blocked cards \n6. Close/block credit card \n7. Deposit cash \n8. Print blocked & closed card details \n9. Logout");
-            string bank_admin_choice = Console.ReadLine();
+                    "\n2. View all issued cards \n3. Add new customer \n4. Issue new credit card" +
+                    "\n5. View blocked cards \n6. Close/block credit card \n7. Deposit cash \n8. Print blocked and closed credit cards \n9. Logout");
+            string bankAdminChoice = Console.ReadLine();
 
-            switch(bank_admin_choice)
+            switch(bankAdminChoice)
             {
                 case "1":
                 {
-                    ViewAllCustomerData(sbiCustomersArrayList);
+                    ViewAllCustomerData();
                     break;
                 }
                 case "2":
                 {
-                    ViewAllIssuedCards(sbiCustomersArrayList);
+                    ViewAllIssuedCards();
                     break;
                 }
                 case "3":
                 {
-                    AddNewCustomer(sbiCustomersArrayList);
+                    bankHelper.AddNewCustomerHelper();
                     break;
                 }
                 case "4":
                 {
-                    IssueNewCreditCard(sbiCustomersArrayList);
+                    bankHelper.IssueNewCreditCardHelper();
                     break;
                 }
                 case "5":
                 {
-                    ViewBlockedCards(sbiCustomersArrayList);
+                    ViewBlockedCards();
                     break;
                 }
                 case "6":
                 {
-                    BlockCreditCard(sbiCustomersArrayList);
+                    BlockCreditCard();
                     break;
                 }
                 case "7":
                 {
-                    Deposit(sbiCustomersArrayList);
+                    Deposit();
                     break;
                 }
                 case "8":
                 {
-                    PrintBlockedAndClosedCards(sbiCustomersArrayList);
-                    break;
+                    PrintBlockedAndClosedCards();
+                    break; 
                 }
                 case "9":
                 {

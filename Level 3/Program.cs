@@ -1,22 +1,23 @@
 ﻿using System;
 
-namespace CreditCardManagementSystemLevel2 
+namespace CreditCardManagementSystem3
 {
     class Program 
     {
         public static HDFCBankAdmin hdfcBankAdmin = new HDFCBankAdmin();
         public static SBIBankAdmin sbiBankAdmin = new SBIBankAdmin();
         public static KVBBankAdmin kvbBankAdmin = new KVBBankAdmin();
-        static void Main(string[] args) 
+
+        static void Main() 
         {   
             BankAdmin bankObject = new BankAdmin();
             Customer customerObject = new Customer();
 
             while(true) {
                 Console.WriteLine("\n\nSelect the user type - \n1. Bank Administrator \n2. Customer");
-                string user_choice = Console.ReadLine();
+                string userChoice = Console.ReadLine();
 
-                switch(user_choice) {
+                switch(userChoice) {
                     case "1":
                     {
                         bankObject.InitializeOperation(sbiBankAdmin, hdfcBankAdmin, kvbBankAdmin);
@@ -25,7 +26,7 @@ namespace CreditCardManagementSystemLevel2
                     case "2":
                     {
                         Console.WriteLine("\nHello Customer!");
-                        customerObject.InitializeOperation(bankObject, sbiBankAdmin, hdfcBankAdmin, kvbBankAdmin);
+                        customerObject.InitializeOperation(sbiBankAdmin, hdfcBankAdmin, kvbBankAdmin);
                         break;
                     }
                     default:
@@ -35,6 +36,6 @@ namespace CreditCardManagementSystemLevel2
                     }
                 }
             }
-        }
+        }   
     }
 }

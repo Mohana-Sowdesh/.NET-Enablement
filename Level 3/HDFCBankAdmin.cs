@@ -1,11 +1,11 @@
 using System.Text;
 using System.IO;
 
-namespace CreditCardManagementSystem3
+namespace CreditCardManagementSystem3 
 {
-    class KVBBankAdmin : BankAdmin
-    {
-        public void SelectOperation(KVBBankAdmin bank)
+    class HDFCBankAdmin : BankAdmin
+    {   
+        public void SelectOperation(HDFCBankAdmin bank)
         {   
             BankHelper bankHelper = new BankHelper(bank);
             Console.WriteLine("Select the operation to perform - \n1. View all customer data" + 

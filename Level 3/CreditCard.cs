@@ -1,6 +1,6 @@
 using System;
 
-namespace CreditCardManagementSystemLevel2
+namespace CreditCardManagementSystem3
 {
     class CreditCard
     {
@@ -9,7 +9,6 @@ namespace CreditCardManagementSystemLevel2
         public int Cvv { get; set; }
         public string Pin {get; set; }
         public string Status { get; set; }
-
         public string CardType { get; set; }
         public int SpendingLimit { get; set; }
     }

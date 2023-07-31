@@ -1,27 +1,27 @@
 using System;
 
-namespace CreditCardManagementSystemLevel2
+namespace CreditCardManagementSystem3
 {
     class Item
     {
-        public void listItems()
+        public void ListItems()
         {
             Console.WriteLine("The items available for purchase are: ");
             Console.WriteLine("1. Rice - Rs. 125 \n2. Dal - Rs. 70 \n3. Grapes - Rs. 50");
         }
 
-        public int chooseItems()
+        public int ChooseItems()
         {
             Item itemObject = new Item();
-            itemObject.listItems();
+            itemObject.ListItems();
 
             int sum = 0;
             while(true)
             {
                 Console.WriteLine("Enter the number of item to be purchased: ");
-                string usr_item_choice = Console.ReadLine();
+                string userItemChoice = Console.ReadLine();
 
-                switch(usr_item_choice)
+                switch(userItemChoice)
                 {
                     case "1":
                     {
