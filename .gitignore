@@ -1,0 +1,18 @@
+
+*.json
+*.props
+*.targets
+*.cache
+*.DS_Store
+Level 3/bin/Debug/net7.0/Level 3
+*.dll
+*.pdb
+
+Level 3/obj/Debug/net7.0/.NETCoreApp,Version=v7.0.AssemblyAttributes.cs
+Level 3/obj/Debug/net7.0/Level 3.AssemblyInfo.cs
+Level 3/obj/Debug/net7.0/Level 3.GeneratedMSBuildEditorConfig.editorconfig
+Level 3/obj/Debug/net7.0/Level 3.GlobalUsings.g.cs
+Level 3/obj/Debug/net7.0/Level 3.csproj.FileListAbsolute.txt
+Level 3/obj/Debug/net7.0/apphost
+*.sln
+Level 3/Closed & Blocked cards.txt
